@@ -36,12 +36,27 @@ tr:nth-child(even) {
 <center><h1>Budget Summary </h1></center>
 <table align="center" border="3">
     <tr><th>Total Category</th><th>Total Budget Amount</th><th>Total Actual Amount</th></tr>
-               <tr>
-                   <td>Total</td>
-                   <td>$<c:out value="${totalbudamount}"/> </td>
-                   <td>$<c:out value="${totalactamount}"/> </td>
 
-               </tr>
+    <c:forEach items="${budgettotal}" var="aTotal">
+        <tr>
+
+            <td><c:out value="${aTotal.cat}"/></td>
+            <td>$<c:out value="${aTotal.budtotal}"/></td>
+            <td>$<c:out value="${aTotal.acttotal}"/></td>
+
+        </tr>
+    </c:forEach>
+
+
+
+    <tr>
+        <td>Total</td>
+        <td>$<c:out value="${totalbudamount}"/> </td>
+        <td>$<c:out value="${totalactamount}"/> </td>
+
+    </tr>
+
+
 
 
 </table>

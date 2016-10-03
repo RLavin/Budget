@@ -37,11 +37,11 @@ tr:nth-child(even) {
 <center><h1>Monthly Budget</h1></center>
 
 <table align="center" border="3">
-    <tr><th>Description</th><th>Category</th><th>Budgeted Amount</th><th>Actual Amount</th></tr>
+    <tr><th>Category</th><th>Description</th><th>Budgeted Amount</th><th>Actual Amount</th></tr>
     <c:forEach items="${thebudgetlist}" var="detail">
         <tr>
-            <td> <c:out value="${detail.description}"/></td>
             <td> <c:out value="${detail.category}"/></td>
+            <td> <c:out value="${detail.description}"/></td>
             <td>$ <c:out value="${detail.budgetamount}"/></td>
             <td>$ <c:out value="${detail.actualamount}"/></td>
         </tr>
@@ -53,6 +53,13 @@ tr:nth-child(even) {
 
    <center> <a href="/finance/mybudget">HOME</a>
     </center>
+<br>
+<br>
+<form action="/finance/filter" method="post">
+    Search <input type="text" name="searchtext"/>
+    <br>
+    <input type="submit" name="Filter Results"/>
+</form>
 
 
 </body>

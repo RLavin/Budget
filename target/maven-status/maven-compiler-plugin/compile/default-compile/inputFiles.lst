@@ -1,5 +1,7 @@
 /Users/Raul/Documents/projects/Budget/src/main/java/com/ironyard/services/BudgetService.java
 /Users/Raul/Documents/projects/Budget/src/main/java/com/ironyard/servlet/BudgetServlet.java
+/Users/Raul/Documents/projects/Budget/src/main/java/com/ironyard/data/BudgetTotal.java
 /Users/Raul/Documents/projects/Budget/src/main/java/com/ironyard/services/DbServiceTest.java
+/Users/Raul/Documents/projects/Budget/src/main/java/com/ironyard/servlet/BudgetTotalServlet.java
 /Users/Raul/Documents/projects/Budget/src/main/java/com/ironyard/services/DbService.java
 /Users/Raul/Documents/projects/Budget/src/main/java/com/ironyard/data/Budget.java

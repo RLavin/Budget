@@ -1,11 +1,9 @@
 package com.ironyard.services;
 
 import com.ironyard.data.Budget;
+import com.ironyard.data.BudgetTotal;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +12,7 @@ import java.util.List;
  */
 public class BudgetService {
 
-    public  List<Budget> getAllBudgets() throws SQLException {
+    public List<Budget> getAllBudgets() throws SQLException {
         Budget found = null;
         List<Budget> allOfThem = new ArrayList<Budget>();
         DbService myDba = new DbService();
@@ -31,6 +29,51 @@ public class BudgetService {
             allOfThem.add(found);
         }
         return allOfThem;
+    }
 
+    public List<BudgetTotal> getBudgetTotal() throws SQLException {
+        List<BudgetTotal> found = new ArrayList<>();
+        DbService  dbUtil = new DbService() ;
+        Connection c = dbUtil.getConnection();
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery("select bud_category, sum(bud_budamount) as bud_total, sum (bud_actamount) as act_total from financing.budget group by bud_category;");
+        while (rs.next()) {
+            BudgetTotal tmp = new BudgetTotal();
+            tmp.setCat(rs.getString("bud_category"));
+            tmp.setBudtotal(rs.getLong("bud_total")) ;
+            tmp.setActtotal(rs.getLong("act_total")) ;
+            found.add(tmp);
+        }
+
+        return found;
+    }
+    public List<Budget> Search(String search) throws SQLException {
+        List<Budget> found = new ArrayList<>();
+        DbService dbUtil = new DbService();
+        Connection c = dbUtil.getConnection();
+        // do a starts with search
+        search = search + "%";
+        PreparedStatement ps = c.prepareStatement("select * from financing.budget WHERE (bud_category ILIKE ?) OR (bud_description ILIKE ?);");
+        ps.setString(1, search);
+        ps.setString(2, search);
+        ResultSet rs = ps.executeQuery();
+        found = convertResultsToList(rs);
+        return found;
+    }
+
+    private List<Budget> convertResultsToList(ResultSet rs) throws SQLException {
+        List<Budget> found = new ArrayList<>();
+        while(rs.next()){
+            Budget tmp = new Budget();
+            tmp.setCategory(rs.getString("bud_category")) ;
+            tmp.setId(rs.getLong("bud_id"));
+            tmp.setDescription(rs.getString("bud_description")) ;
+            tmp.setActualamount(rs.getInt("bud_actamount")) ;
+            tmp.setBudgetamount(rs.getInt("bud_budamount")) ;
+            found.add(tmp);
+        }
+        return found;
     }
 }
+
+

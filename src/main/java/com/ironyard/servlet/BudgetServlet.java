@@ -22,15 +22,16 @@ public class BudgetServlet extends HttpServlet {
         try {
             // call to get all budgets
             BudgetService bs = new BudgetService();
-            List<Budget> allBugdgets = bs.getAllBudgets();
+            List<Budget> allBudgets = bs.getAllBudgets();
             // put that list of budgets in the session
-            req.getSession().setAttribute("thebudgetlist",allBugdgets);
+            req.getSession().setAttribute("thebudgetlist",allBudgets);
+
 
 
             double x = 0;
             double y = 0;
             // loop through budgets
-            for (Budget tmp : allBugdgets ) {
+            for (Budget tmp : allBudgets ) {
                  x = x + tmp.getBudgetamount();
                  y = y + tmp.getActualamount();
 
@@ -40,7 +41,9 @@ public class BudgetServlet extends HttpServlet {
             req.getSession().setAttribute("totalbudamount", x);
             req.getSession().setAttribute("totalactamount", y);
 
+            BudgetService  ms = new BudgetService() ;
 
+            req.setAttribute("budgettotal", ms.getBudgetTotal() );
 
 
 
