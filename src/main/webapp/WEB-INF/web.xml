@@ -7,14 +7,24 @@
 
 
   <servlet>
-    <servlet-name>BudgetServlet</servlet-name>
-    <servlet-class>com.ironyard.servlet.BudgetServlet</servlet-class>
+    <servlet-name>BudgetListServlet</servlet-name>
+    <servlet-class>com.ironyard.servlet.BudgetListServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>BudgetServlet</servlet-name>
-    <url-pattern>/mybudget</url-pattern>
+    <servlet-name>BudgetListServlet</servlet-name>
+    <url-pattern>/list</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BudgetTotalServlet</servlet-name>
+        <servlet-class>com.ironyard.servlet.BudgetTotalServlet </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BudgetTotalServlet</servlet-name>
+        <url-pattern>/total</url-pattern>
+    </servlet-mapping>
 
   <servlet>
     <servlet-name>SearchByCat</servlet-name>
@@ -24,6 +34,15 @@
   <servlet-name>SearchByCat</servlet-name>
   <url-pattern>/filter</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateBudget</servlet-name>
+        <servlet-class>com.ironyard.servlet.CreateBudgetServlet </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateBudget</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>

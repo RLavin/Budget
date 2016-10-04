@@ -15,7 +15,12 @@ import java.util.List;
 /**
  * Created by Raul on 9/29/16.
  */
-public class BudgetServlet extends HttpServlet {
+public class BudgetListServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req,resp );
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -28,27 +33,9 @@ public class BudgetServlet extends HttpServlet {
 
 
 
-            double x = 0;
-            double y = 0;
-            // loop through budgets
-            for (Budget tmp : allBudgets ) {
-                 x = x + tmp.getBudgetamount();
-                 y = y + tmp.getActualamount();
-
-                     //equation for budget amount
-                //equation for sum of actual amount
-            }
-            req.getSession().setAttribute("totalbudamount", x);
-            req.getSession().setAttribute("totalactamount", y);
-
-            BudgetService  ms = new BudgetService() ;
-
-            req.setAttribute("budgettotal", ms.getBudgetTotal() );
-
-
 
             // forward to create page
-            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/summary.jsp");
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/budgetlist.jsp");
             dispatcher.forward(req, resp);
         }catch(Throwable t){
             t.printStackTrace();

@@ -51,15 +51,19 @@ tr:nth-child(even) {
 <br>
 <br>
 
-   <center> <a href="/finance/mybudget">HOME</a>
+   <center> <a href="/finance/total">HOME</a>
     </center>
 <br>
 <br>
-<form action="/finance/filter" method="post">
+
+<center><form action="/finance/filter" method="post">
     Search <input type="text" name="searchtext"/>
     <br>
     <input type="submit" name="Filter Results"/>
-</form>
+</form></center>
+<br>
+<br>
+<center>Create New Budget <a href="/finance/createnewbudget.jsp">HERE</a></center>
 
 
 </body>

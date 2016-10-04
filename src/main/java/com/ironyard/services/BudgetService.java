@@ -51,13 +51,22 @@ public class BudgetService {
         List<Budget> found = new ArrayList<>();
         DbService dbUtil = new DbService();
         Connection c = dbUtil.getConnection();
-        // do a starts with search
-        search = search + "%";
-        PreparedStatement ps = c.prepareStatement("select * from financing.budget WHERE (bud_category ILIKE ?) OR (bud_description ILIKE ?);");
-        ps.setString(1, search);
-        ps.setString(2, search);
-        ResultSet rs = ps.executeQuery();
-        found = convertResultsToList(rs);
+        try {
+            c = dbUtil.getConnection() ;
+            // do a starts with search
+            search = search + "%";
+            PreparedStatement ps = c.prepareStatement("select * from financing.budget WHERE (bud_category ILIKE ?) OR (bud_description ILIKE ?);");
+            ps.setString(1, search);
+            ps.setString(2, search);
+            ResultSet rs = ps.executeQuery();
+            found = convertResultsToList(rs);
+        } catch(SQLException  t) {
+            t.printStackTrace();
+            c.rollback();
+            throw t;
+        }finally {
+            c.close();
+        }
         return found;
     }
 
@@ -74,6 +83,29 @@ public class BudgetService {
         }
         return found;
     }
+
+
+    public void createBudget(Budget aBudget) throws SQLException {
+        DbService myDba = new DbService();
+        Connection c = null;
+        try {
+            c = myDba.getConnection();
+            PreparedStatement stmt = c.prepareCall("INSERT into financing.budget (bud_id,bud_category,bud_description,bud_budamount, bud_actamount)VALUES (nextval('financing.budget_SEQ'),?,?,?,?)");
+            stmt.setString(1, aBudget.getCategory());
+            stmt.setString(2, aBudget.getDescription());
+            stmt.setDouble(3, aBudget.getBudgetamount());
+            stmt.setDouble(4, aBudget.getActualamount());
+            stmt .executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+            c.rollback();
+            throw e;
+        }finally {
+            c.close();
+        }
+
+        }
+
 }
 
 

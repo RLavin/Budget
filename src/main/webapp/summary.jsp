@@ -64,7 +64,7 @@ tr:nth-child(even) {
 <br>
 <br>
 
-   <center><a href="createbudget.jsp">Go To Detail</a></center>
+   <center><a href="/finance/list">Go To Detail</a></center>
 
 </body>
 </html>

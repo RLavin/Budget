@@ -18,7 +18,7 @@ public class BudgetSearchServlet extends HttpServlet  {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get the movies
         BudgetService  ms = new BudgetService();
-        String destination = "/createbudget.jsp";
+        String destination = "/budgetlist";
         try {
             // get the search text
             String searchByText = req.getParameter("searchtext");

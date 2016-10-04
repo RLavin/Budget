@@ -10,12 +10,12 @@ public class Budget {
     private double actualamount;
     private long id;
 
-    public Budget(String description, String category, double budgetamount, double actualamount, long id) {
+    public Budget(String description, String category, double budgetamount, double actualamount) {
         this.description = description;
         this.category = category;
         this.budgetamount = budgetamount;
         this.actualamount = actualamount;
-        this.id = id;
+
     }
 
     public Budget(){
