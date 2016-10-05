@@ -9,3 +9,5 @@ CREATE TABLE financing.budget
     bud_budamount INTEGER,
     bud_actamount INTEGER
 );
+
+CREATE SEQUENCE financing.budget_SEQ;

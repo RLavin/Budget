@@ -11,25 +11,27 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Raul on 10/3/16.
+ * Created by Raul on 10/5/16.
  */
-public class BudgetSearchServlet extends HttpServlet  {
+public class DeleteBudgetServlet extends HttpServlet  {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // get the movies
-        BudgetService  ms = new BudgetService();
-        String destination = "/budgetlist";
-        try {
-            // get the search text
-            String searchByText = req.getParameter("searchtext");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String destination = "/list";
+        // get id from the request
+        String id = req.getParameter("id");
+        long idConv = Long.parseLong(id);
 
-            req.setAttribute("thebudgetlist", ms.Search(searchByText ));
-        } catch (SQLException e) {
+        // fetch movie by id
+        BudgetService  ms = new BudgetService();
+        try {
+            ms.delete(idConv);
+        }catch(SQLException e){
             e.printStackTrace();
             destination = "/error.jsp";
         }
 
-        // forward to proper JSP
+        // forward
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
-        dispatcher.forward(req,resp);    }
+        dispatcher.forward(req,resp);
+    }
 }

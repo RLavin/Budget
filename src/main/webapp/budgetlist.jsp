@@ -11,7 +11,7 @@
 
 
 
-body {background-image: url("https://thumbs.dreamstime.com/z/budget-background-financial-concept-note-book-money-calculator-66275030.jpg");  ;
+body {background-image: url("https://thumbs.dreamstime.com/z/budget-background-financial-concept-note-book-money-calculator-66275030.jpg");
        align-content: center; }
 
 table {
@@ -37,13 +37,15 @@ tr:nth-child(even) {
 <center><h1>Monthly Budget</h1></center>
 
 <table align="center" border="3">
-    <tr><th>Category</th><th>Description</th><th>Budgeted Amount</th><th>Actual Amount</th></tr>
+    <tr><th>Edit</th><th>Category</th><th>Description</th><th>Budget Amount</th><th>Actual Amount</th><th>Delete</th></tr>
     <c:forEach items="${thebudgetlist}" var="detail">
         <tr>
+            <td><a href="/finance/select?id=<c:out value="${detail.id}"/>">EDIT</a>
             <td> <c:out value="${detail.category}"/></td>
             <td> <c:out value="${detail.description}"/></td>
             <td>$ <c:out value="${detail.budgetamount}"/></td>
             <td>$ <c:out value="${detail.actualamount}"/></td>
+            <td><a href="/finance/delete?id=<c:out value="${detail.id}"/>">DELETE</a></td>
         </tr>
     </c:forEach>
 </table>

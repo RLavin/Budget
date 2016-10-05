@@ -8,7 +8,7 @@
 
   <servlet>
     <servlet-name>BudgetListServlet</servlet-name>
-    <servlet-class>com.ironyard.servlet.BudgetListServlet</servlet-class>
+    <servlet-class>com.ironyard.servlet.ListBudgetServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -18,7 +18,7 @@
 
     <servlet>
         <servlet-name>BudgetTotalServlet</servlet-name>
-        <servlet-class>com.ironyard.servlet.BudgetTotalServlet </servlet-class>
+        <servlet-class>com.ironyard.servlet.TotalBudgetServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -28,7 +28,7 @@
 
   <servlet>
     <servlet-name>SearchByCat</servlet-name>
-    <servlet-class>com.ironyard.servlet.BudgetSearchServlet </servlet-class>
+    <servlet-class>com.ironyard.servlet.SearchBudgetServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   <servlet-name>SearchByCat</servlet-name>
@@ -43,6 +43,34 @@
         <servlet-name>CreateBudget</servlet-name>
         <url-pattern>/create</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+    <servlet-name>SelectBudget</servlet-name>
+    <servlet-class>com.ironyard.servlet.SelectBudgetServlet</servlet-class>
+</servlet>
+    <servlet-mapping>
+        <servlet-name>SelectBudget</servlet-name>
+        <url-pattern>/select</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateBudget</servlet-name>
+        <servlet-class>com.ironyard.servlet.UpdateBudgetServlet </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateBudget</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteBudget</servlet-name>
+        <servlet-class>com.ironyard.servlet.DeleteBudgetServlet  </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteBudget</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
 
 
 </web-app>
